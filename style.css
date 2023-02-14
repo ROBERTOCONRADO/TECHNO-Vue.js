@@ -222,13 +222,13 @@ body {
     opacity: 0;
   }
   to {
-    transform: translate3d(0, 0px, 0);
     opacity: 1;
+    transform: translate3d(0, 0px, 0);
   }
 }
 
 .alerta_mensagem {
-  background: white;
+  background: #ffffff;
   display: inline-block;
   padding: 20px 40px;
   border: 2px solid green;

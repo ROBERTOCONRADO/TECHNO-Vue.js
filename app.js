@@ -58,7 +58,7 @@ const vm = new Vue({
       this.carrinho.splice(index, 1);
     },
     checarLocalStorage() {
-      if(window.localStorage.carrinho)
+      if (window.localStorage.carrinho)
         this.carrinho = JSON.parse(window.localStorage.carrinho);
     },
     alerta(mensagem) {
@@ -67,15 +67,26 @@ const vm = new Vue({
       setTimeout(() => {
         this.alertaAtivo = false;
       }, 2000);
+    },
+    router() {
+      const hash = document.location.hash;
+      if (hash)
+        this.fetchProduto(hash.replace("#", ""));
     }
   },
   watch: {
+    produto() {
+      document.title = this.produto.nome || "Techno";
+      const hash = this.produto.id || "";
+      history.pushState(null, null, `#${hash}`);
+    },
     carrinho() {
       window.localStorage.carrinho = JSON.stringify(this.carrinho);
     }
   },
   created() {
     this.fetchProdutos();
+    this.router();
     this.checarLocalStorage();
   }
 })
